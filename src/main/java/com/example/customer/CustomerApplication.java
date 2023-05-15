@@ -14,26 +14,28 @@ import java.util.List;
 @SpringBootApplication
 public class CustomerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CustomerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CustomerApplication.class, args);
+    }
 
 
+    @Component
+    class AccountComponent implements ApplicationRunner {
 
-	@Component
-	class AccountComponent implements ApplicationRunner{
+        private final String FILE_PATH = "/json/accounts-mock.json";
 
-		@Override
-		public void run(ApplicationArguments args) throws Exception {
-			ObjectMapper mapper = new ObjectMapper();
-			TypeReference<List<Account>> typeReference = new TypeReference<List<Account>>(){};
-			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/accounts-mock.json");
-			List<Account> accounts = mapper.readValue(inputStream,typeReference);
-			System.out.println("Users Saved!");
-		}
-	}
+        @Override
+        public void run(ApplicationArguments args) throws Exception {
+            ObjectMapper mapper = new ObjectMapper();
+            TypeReference<List<Account>> typeReference = new TypeReference<>() {
+            };
+            InputStream inputStream = TypeReference.class.getResourceAsStream(FILE_PATH);
+            List<Account> accounts = mapper.readValue(inputStream, typeReference);
+        }
+    }
 
 
-	record Account(String id, String name, Float balance){}
+    record Account(String id, String name, Float balance) {
+    }
 
 }
