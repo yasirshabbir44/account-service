@@ -19,6 +19,11 @@ public class CustomerApplication {
     }
 
 
+
+    /*
+    * Component used to indicate that a bean should run when it is contained within a SpringApplication.
+    * Load all accounts from accounts-mocks.json file inside resources/json into Collection
+    * */
     @Component
     class AccountComponent implements ApplicationRunner {
 
