@@ -13,3 +13,6 @@ This service parsed from the file and ingested into your application during star
 * Maven
 * SpringBoot
 * Spring Reactive Web
+* Swagger
+* Javax Validation
+* Lombok
