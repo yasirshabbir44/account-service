@@ -28,7 +28,6 @@ class AccountComponent implements ApplicationRunner {
 
 
     private final AccountRepository accountRepository;
-    private Map<String, Account> accounts;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -40,8 +39,6 @@ class AccountComponent implements ApplicationRunner {
         List<Account> accounts = mapper.readValue(inputStream, typeReference);
 
         accountRepository.saveAll(accounts);
-        this.accounts = accounts.parallelStream()
-                .collect(Collectors.toMap(Account::getId, Function.identity()));
 
         log.info("/////////////////////////////////////");
         log.info("System is ready to make a transfer");
@@ -50,8 +47,4 @@ class AccountComponent implements ApplicationRunner {
 
     }
 
-
-    public Map<String, Account> getAccounts() {
-        return this.accounts;
-    }
 }

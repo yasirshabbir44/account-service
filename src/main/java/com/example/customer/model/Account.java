@@ -9,7 +9,6 @@ import lombok.*;
 @Builder
 @Setter
 @Getter
-@ToString
 @Entity
 public class Account {
 
