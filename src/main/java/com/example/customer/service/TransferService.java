@@ -25,7 +25,7 @@ public class TransferService {
 
 
         if (fromAccount.getBalance() < amount) {
-            throw new InsufficientBalanceException( "Account current balance is not available to withdraw. current balance: %s, amount: %s",
+            throw new InsufficientBalanceException("Account current balance is not available to withdraw. current balance: %s, amount: %s",
                     fromAccount.getBalance(),
                     amount);
         }

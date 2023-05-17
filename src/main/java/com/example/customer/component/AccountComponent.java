@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /*
  * Component used to indicate that a bean should run when it is contained within a SpringApplication.

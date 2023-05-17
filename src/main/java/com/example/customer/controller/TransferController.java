@@ -1,7 +1,6 @@
 package com.example.customer.controller;
 
 import com.example.customer.dto.AmountDTO;
-import com.example.customer.service.AccountService;
 import com.example.customer.service.TransferService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,7 +16,7 @@ import javax.validation.Valid;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping(TransferController.SERVICE_PATH )
+@RequestMapping(TransferController.SERVICE_PATH)
 public class TransferController {
 
     public static final String SERVICE_PATH = "api/transfer";
