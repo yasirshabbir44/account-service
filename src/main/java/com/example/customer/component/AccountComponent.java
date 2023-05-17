@@ -1,4 +1,4 @@
-package com.example.customer.Component;
+package com.example.customer.component;
 
 import com.example.customer.model.Account;
 import com.example.customer.repository.AccountRepository;

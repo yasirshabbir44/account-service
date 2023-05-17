@@ -2,6 +2,7 @@ package com.example.customer.controller;
 
 import com.example.customer.dto.AmountDTO;
 import com.example.customer.service.AccountService;
+import com.example.customer.service.TransferService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -22,7 +23,7 @@ public class TransferController {
     public static final String SERVICE_PATH = "api/transfer";
 
 
-    private final AccountService accountService;
+    private final TransferService transferService;
 
     @ApiOperation(value = "Transfer money from an account to other account")
     @ApiResponses(value = {
@@ -37,6 +38,6 @@ public class TransferController {
                          @ApiParam(value = "The amount of the withdraw transaction") @RequestBody @Valid AmountDTO amountDto) {
         log.info("/{}/{}/{} called with amount: {}", fromBankAccountId, toBankAccountId, amountDto);
 
-        accountService.transfer(fromBankAccountId, toBankAccountId, amountDto.getAmount());
+        transferService.transfer(fromBankAccountId, toBankAccountId, amountDto.getAmount());
     }
 }

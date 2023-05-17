@@ -2,6 +2,7 @@ package com.example.customer.controller;
 
 import com.example.customer.dto.AmountDTO;
 import com.example.customer.service.AccountService;
+import com.example.customer.service.TransferService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class TransferControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private AccountService accountService;
+    private TransferService transferService;
 
     @InjectMocks
     private TransferController transferController;

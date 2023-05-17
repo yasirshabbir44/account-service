@@ -1,5 +1,6 @@
 package com.example.customer.controller;
 
+import com.example.customer.exception.InsufficientBalanceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,5 +35,19 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     protected void handleGeneric(Exception e) {
         log.error("HttpStatus.INTERNAL_SERVER_ERROR", e);
+    }
+
+
+    /**
+     * handles InvalidArgumentExceptions
+     *
+     * @param e the exception as cause
+     */
+    @ExceptionHandler(
+            InsufficientBalanceException.class
+    )
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    protected void handleBadRequest(RuntimeException e) {
+        log.error("HttpStatus.BAD_REQUEST", e);
     }
 }
