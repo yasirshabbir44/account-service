@@ -12,36 +12,30 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.example.customer.controller.AccountController.SERVICE_PATH;
 
-@Api("Transfer services")
+
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/account")
+@RequestMapping(SERVICE_PATH )
 public class AccountController {
+
+    public static final String SERVICE_PATH = "api/account";
 
     private final AccountService accountService;
 
 
+    /*
+    * It's return the all Account residing inside system, if you want pagination
+    * then simple pass the pageNumber and pageSize in Request Param it, will return result in
+    * Pagination wise.
+    * */
     @GetMapping
     public List<AccountDTO> getAccounts(@RequestParam(required = false) Integer pageNumber,
                                         @RequestParam(required = false) Integer pageSize) {
         return accountService.getAccounts(pageNumber, pageSize);
     }
 
-    @ApiOperation(value = "Transfer money from an account to other account")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK"),
-            @ApiResponse(code = 400, message = "Bad Request."),
-            @ApiResponse(code = 500, message = "Internal Error.")
-    })
-    @PostMapping(value = "transfer/{fromBankAccountId}/{toBankAccountId}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public void transfer(@ApiParam(value = "The ID of the from bank account") @PathVariable(name = "fromBankAccountId") String fromBankAccountId,
-                         @ApiParam(value = "The ID of the to bank account") @PathVariable(name = "toBankAccountId") String toBankAccountId,
-                         @ApiParam(value = "The amount of the withdraw transaction") @RequestBody @Valid AmountDTO amountDto) {
-        log.info("/{}/{}/{} called with amount: {}", fromBankAccountId, toBankAccountId, amountDto);
 
-        accountService.transfer(fromBankAccountId, toBankAccountId, amountDto.getAmount());
-    }
 }

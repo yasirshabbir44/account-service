@@ -18,7 +18,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccountService {
 
-    private final AccountComponent accountComponent;
     private final AccountRepository accountRepository;
 
     @Transactional
