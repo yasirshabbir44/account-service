@@ -57,4 +57,4 @@ Data from account-mocks.json will be loaded after server started and stored into
   "amount" : 55
   }'`
 
-<img alt="Screenshot of Get All Request" height="500" src="./doc/TransferReq.png.png" width="800"/>
+<img alt="Screenshot of Get All Request" height="500" src="./doc/TransferReq.png" width="800"/>
