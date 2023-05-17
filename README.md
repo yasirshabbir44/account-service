@@ -16,9 +16,10 @@ for money transfers between accounts.
 * Lombok
 * Transaction Management
 
+### How to run
+Just run this command on CLI `mvn spring-boot:run`
 
-
-### How it's work
+### Internally How it's work
 JSON file inside ``resources/json/accounts-mock.json`` containing list of account with ID, Name and Balance. Accounts must be
 This service parsed from the file and ingested into your application during startup. After importing data User able to transfer fund between users(Credit and Debit).
 Technically AccountComponent is class which implemented ApplicationRunner, and it will run once when application startup.
