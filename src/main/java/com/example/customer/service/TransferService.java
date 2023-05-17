@@ -13,17 +13,21 @@ public class TransferService {
 
     private final AccountRepository accountRepository;
 
+    /*
+    * Method accepting three parameter fromAccountId( UUID) , toAccountId(UUID) and amount(Double).
+    * Transactionally synchronized this method will enable the Transacted flow.
+    * */
     @Transactional
-    public synchronized void transfer(String from, String to, Double amount) {
+    public synchronized void transfer(String fromAccountId, String toAccountId, Double amount) {
 
-
-        Account fromAccount = accountRepository.findById(from).orElseThrow(() -> new IllegalArgumentException("From Account not found"));
-        Account toAccount = accountRepository.findById(to).orElseThrow(() -> new IllegalArgumentException("To  Account not found"));
-        // synchronizing from this point, since balances are checked
+        // Get the Locked Account model
+        Account fromAccount = accountRepository.findById(fromAccountId).orElseThrow(() -> new IllegalArgumentException("From Account not found"));
+        Account toAccount = accountRepository.findById(toAccountId).orElseThrow(() -> new IllegalArgumentException("To  Account not found"));
+        // Amount validation checked
         if (amount < 0)
             throw new IllegalArgumentException("Negative value not allowed");
 
-
+        // Balance validation check
         if (fromAccount.getBalance() < amount) {
             throw new InsufficientBalanceException("Account current balance is not available to withdraw. current balance: %s, amount: %s",
                     fromAccount.getBalance(),
