@@ -1,8 +1,11 @@
 package com.example.customer.Component;
 
 import com.example.customer.model.Account;
+import com.example.customer.repository.AccountRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,10 +21,13 @@ import java.util.stream.Collectors;
  * Load all accounts from accounts-mocks.json file inside resources/json into Collection
  * */
 @Component
+@AllArgsConstructor
+@Slf4j
 public
 class AccountComponent implements ApplicationRunner {
 
 
+    private final AccountRepository accountRepository;
     private Map<String, Account> accounts;
 
     @Override
@@ -33,10 +39,15 @@ class AccountComponent implements ApplicationRunner {
         InputStream inputStream = TypeReference.class.getResourceAsStream(FILE_PATH);
         List<Account> accounts = mapper.readValue(inputStream, typeReference);
 
+        accountRepository.saveAll(accounts);
         this.accounts = accounts.parallelStream()
                 .collect(Collectors.toMap(Account::getId, Function.identity()));
 
-        System.out.println();
+        log.info("/////////////////////////////////////");
+        log.info("System is ready to make a transfer");
+        log.info("Total number of record imported : {}", accounts.size());
+        log.info("/////////////////////////////////////");
+
     }
 
 

@@ -1,8 +1,7 @@
 package com.example.customer.controller;
 
-import com.example.customer.Component.AccountComponent;
-import com.example.customer.dtto.AmountDTO;
-import com.example.customer.model.Account;
+import com.example.customer.dto.AccountDTO;
+import com.example.customer.dto.AmountDTO;
 import com.example.customer.service.AccountService;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
+import java.util.List;
 
 
 @Api("Transfer services")
@@ -21,13 +20,13 @@ import java.util.Collection;
 @RequestMapping("api/account")
 public class AccountController {
 
-    private final AccountComponent accountComponent;
     private final AccountService accountService;
 
 
     @GetMapping
-    public Collection<Account> get() {
-        return accountComponent.getAccounts().values();
+    public List<AccountDTO> getAccounts(@RequestParam(required = false) Integer pageNumber,
+                                        @RequestParam(required = false) Integer pageSize) {
+        return accountService.getAccounts(pageNumber, pageSize);
     }
 
     @ApiOperation(value = "Transfer money from an account to other account")

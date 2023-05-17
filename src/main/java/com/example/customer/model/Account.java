@@ -1,5 +1,7 @@
 package com.example.customer.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,9 +10,11 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
+@Entity
 public class Account {
 
 
+    @Id
     private String id;
     private String name;
     private Double balance;
