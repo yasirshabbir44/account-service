@@ -58,3 +58,11 @@ Data from account-mocks.json will be loaded after server started and stored into
   }'`
 
 <img alt="Screenshot of Get All Request" height="500" src="./doc/TransferReq.png" width="800"/>
+
+
+
+#### * SwaggerUI
+
+`http://localhost:8080/swagger-ui/index.html`
+
+<img alt="Screenshot of Get All Request" height="500" src="./doc/Swagger.png" width="800"/>
